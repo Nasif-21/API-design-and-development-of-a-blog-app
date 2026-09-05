@@ -60,6 +60,12 @@ export const userLogin=async(req,res)=>{
             message:"Wrong credencials"
         })
     }
+    if(!user.isActive)
+    {
+        return res.status(403).json({
+            message:"User access blocked, contact Admin"
+        })
+    }
 
     const token=jwt.sign({id:user.id,email:user.email,role:user.role},process.env.SECRET_KEY,{expiresIn:3600})
     res.status(200).json({
