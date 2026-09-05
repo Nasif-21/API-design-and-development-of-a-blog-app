@@ -11,9 +11,30 @@ export const authMiddleware=(req,res,next)=>{
     }
 
     const token=authHeader.split(" ")[1]
-    const decoded=jwt.verify(token,process.env.SECRET_KEY);
-    req.user=decoded;
-    next();
+    try{
+        const decoded=jwt.verify(token,process.env.SECRET_KEY);
+        req.user=decoded;
+        next();
+    }
+
+    catch(err){
+        if(err.name==="TokenExpiredError")
+        {
+            return res.status(401).json({
+                message:"Token expire "
+            })
+        }
+         if (err.name === "JsonWebTokenError") {
+            return res.status(401).json({
+                message: "Invalid token"
+            });
+        }
+
+        return res.status(401).json({
+            message: "Authentication failed"
+        });
+    }
+
 
 }
 
@@ -27,3 +48,4 @@ export const isAdmin=(req,res,next)=>{
     }
     next();
 }
+
