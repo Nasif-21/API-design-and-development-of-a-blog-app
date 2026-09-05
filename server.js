@@ -8,7 +8,7 @@ import './model/association.js';
 const PORT=process.env.PORT||5001;
 
 await sequelize.authenticate();
-await sequelize.sync({alter:true})
+await sequelize.sync()
 console.log(`Database start at port ${process.env.DB_PORT}`)
 app.listen(PORT,()=>{
     console.log(`Server starts at port ${PORT} `)
