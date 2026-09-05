@@ -97,7 +97,7 @@ export const viewAllBlogs=async(req,res)=>{
 
 export const viewBlogbyId=async(req,res)=>{
     const reqId=req.params.id;
-    const findBlogById=await Blog.findByPk({where:{reqId}});
+    const findBlogById=await Blog.findByPk(reqId);
 
     if(!findBlogById)
     {
