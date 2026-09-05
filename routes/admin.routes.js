@@ -1,10 +1,11 @@
 import { Router } from "express";
+import { authMiddleware,isAdmin } from "../middleware/auth.middleware.js";
+import { viewAllUsers } from "../controller/admin.controller.js";
 
 const router=Router();
 
-// router.post("/api/auth/register");
-// router.post("/api/auth/login");
-// router.get("/api/users")
+
+ router.get("/api/users",authMiddleware,isAdmin,viewAllUsers)
 // router.get("/api/users/:id")
 // router.patch("/api/users/:id/status")
 // router.get("/api/users/profile")
