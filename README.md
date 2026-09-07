@@ -17,4 +17,5 @@
 * Postman
 
 ## Postman collection link: 
+https://documenter.getpostman.com/view/26591347/2sBYAxPUrB
 
